@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --fundo-main: rgba(0, 0, 0, 0.189);
+  --fundo-nav-li: #857e7e;
+  --cor-letra-nav-li: #ffffff;
 }
 
 @theme inline {
@@ -14,10 +17,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: rgba(172, 51, 51, 0.189);
+    --foreground: black;
+    --fundo-main: #ffffff;
+    --fundo-nav-li: #ffffff;
+    --cor-letra-nav-li: #000000;
   }
 }
+
+
 
 body {
   background: var(--background);
@@ -25,7 +33,73 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
-  font-size: 24;
+main {
+  background-color: var(--fundo-main);
+}
+
+
+
+h2 {
   font-weight: bold;
+}
+
+.nav-links li { 
+  position: relative;
+  transition: color .4s ease-in-out;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+/* Fundo animado */
+.nav-links li::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+
+  width: 0;
+  height: 100%;
+
+  background: var(--fundo-nav-li);
+  border-radius: 6px;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  opacity: 0;
+
+  transition: 
+    width .4s ease-in-out,
+    opacity .3s ease-in-out;
+}
+
+/* Hover */
+.nav-links li:hover {
+  color: var(--cor-letra-nav-li);
+}
+
+.nav-links li:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Link acima do efeito */
+.nav-links a {
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+}
+
+.conteudo-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.conteudo-main h2 {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.paragrafo-main {
+  text-indent: 20px;
 }

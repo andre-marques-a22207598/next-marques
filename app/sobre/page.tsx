@@ -1,7 +1,5 @@
-export default function page() {
-    return (
-        <div>
-            <h1>Sobre esta cena estranha</h1>
-        </div>
-    )
+import Sobre from '@/components/Sobre/Sobre'
+
+export default function SobrePage() {
+    return <Sobre/>
 }
