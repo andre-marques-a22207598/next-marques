@@ -2,10 +2,10 @@ import Link from 'next/link';
 import Orgulho from '@/components/Orgulho/Orgulho';
 import Projeto from '../Projeto/Projeto';
 
-const itens = []
 const quantidadeLabs = 7;
 
 export default function Projetos() {
+    const itens = []
     let url =''
     for (let i = 0; i < quantidadeLabs; i++) {
         url = (i < 3) ? `https://andre-marques-a22207598.github.io/lab${i+1}/cidade/index.html` : `https://andre-marques-a22207598.github.io/lab${i+1}/index.html`
