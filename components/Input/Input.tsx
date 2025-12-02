@@ -11,14 +11,21 @@ interface Tarefa {
 
 export default function Input() {
     const [texto, setTexto] = useState<string>("")
-    const [tarefas, setTarefas] = useState<Tarefa[]>(() => {
-        const tarefasStored = localStorage.getItem("tarefas")
-        return tarefasStored ? JSON.parse(tarefasStored) : []
-    })
+    const [tarefas, setTarefas] = useState<Tarefa[]>([]) // ← CORRIGIDO
     const [opcao, setOpcao] = useState<string>("")
     const [corFundo, setCorFundo] = useState<string>("")
     const [visivel, setVisivel] = useState<boolean>(false)
-    const [idTarefa, setIdTarefa] = useState<number>(tarefas.length)
+    const [idTarefa, setIdTarefa] = useState<number>(0)
+
+    // ← CARREGAR do localStorage DEPOIS do carregamento
+    useEffect(() => {
+        const tarefasStored = localStorage.getItem("tarefas")
+        if (tarefasStored) {
+            const parsed = JSON.parse(tarefasStored)
+            setTarefas(parsed)
+            setIdTarefa(parsed.length)
+        }
+    }, [])
 
     function definirCorFundo(valor: string, cor: string) {
         setVisivel(true)
@@ -115,15 +122,14 @@ export default function Input() {
         let id = idTarefa + 1
         setIdTarefa(id)
 
-        setTarefas((tarefas) => [
-            ...tarefas,
-            {
-                id: id,
-                opcao: opcao,
-                texto: texto,
-                corFundo: corFundo
-            }
-        ])
+        const nova = {
+            id: id,
+            opcao: opcao,
+            texto: texto,
+            corFundo: corFundo
+        }
+
+        setTarefas((t) => [...t, nova])
 
         setTexto("")
         setOpcao("")
@@ -131,7 +137,6 @@ export default function Input() {
     }
 
     function apagarTarefa(id: number) {
-        setIdTarefa(id - 1)
         setTarefas((_) => _.filter((tarefa) => tarefa.id !== id))
     }
 
@@ -149,8 +154,11 @@ export default function Input() {
         apagarTarefa(id)
     }
 
+    // SALVAR NO LOCALSTORAGE
     useEffect(() => {
-        localStorage.setItem("tarefas", JSON.stringify(tarefas))
+        if (typeof window !== "undefined") {
+            localStorage.setItem("tarefas", JSON.stringify(tarefas))
+        }
     }, [tarefas])
 
     return (
