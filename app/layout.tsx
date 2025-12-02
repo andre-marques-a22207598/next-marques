@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Relogio from "@/components/Relogio/Relogio";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className='h-screen flex flex-col justify-between items-center'>
-        
+
         <header className="flex flex-col items-center mt-2.5 mb-[30px]">
           <h1 className="mb-2.5 font-bold text-center text-[2em]">
             A minha App React & Next.js!
@@ -29,6 +30,8 @@ export default function RootLayout({
               <li><Link href="/caracteristicas">Caracteristicas</Link></li>
               <li><Link href="/tecnologias">Tecnologias</Link></li>
               <li><Link href="/projetos">Projetos</Link></li>
+              <li><Link href="/contador">Contador</Link></li>
+              <li><Link href="/input">Input</Link></li>
             </ul>
           </nav>
         </header>
@@ -54,10 +57,14 @@ export default function RootLayout({
   transition-transform duration-300
   hover:scale-[1.02]
 ">
-  <p>Universidade Lusófona © {data.getFullYear()}</p>
-  <p>André Marques</p>
-  <p>Desenvolvimento de Interfaces Web</p>
-</footer>
+          <p>Universidade Lusófona © {data.getFullYear()}</p>
+          <p>André Marques</p>
+          <p>Desenvolvimento de Interfaces Web</p>
+          <div className="flex flex-col items-center">
+            <Relogio />
+
+          </div>
+        </footer>
 
       </body>
     </html>

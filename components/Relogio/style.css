@@ -1,0 +1,42 @@
+
+:root {
+    --largura: .43em;
+    --altura: 2.2em;
+}
+
+@keyframes animacao-letra-d {
+    0% { transform: rotate(-45deg); }
+    100% { transform: rotate(315deg); }
+}
+
+.letra-d {
+    overflow: hidden;
+    position: absolute;
+    top: 13px;
+    left: 3px;
+    display: inline-block;
+    width: var(--altura);
+    height: var(--altura);
+}
+.letra-d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--largura);
+    height: var(--altura);
+    background-color: black;
+}
+.letra-d::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4.5px;
+    width: var(--altura);
+    height: var(--altura);
+    border: var(--largura) solid black;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    animation: animacao-letra-d 5s linear infinite;
+}
