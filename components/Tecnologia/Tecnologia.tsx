@@ -1,3 +1,4 @@
+import ContadorPersonalizado from '../TecnologiaCard/ContadorPersonalizado'
 import TecnologiaCard from '../TecnologiaCard/TecnologiaCard'
 
 interface TecnologiaProps {
@@ -5,9 +6,10 @@ interface TecnologiaProps {
     title: string
     description: string
     rating: number
+    index: number // para gerar chave única
 }
 
-export default function Tecnologia({image, title, description, rating}: TecnologiaProps) {
+export default function Tecnologia({image, title, description, rating, index}: TecnologiaProps) {
     let estrelas = '⭐'
     
     return (
@@ -19,6 +21,8 @@ export default function Tecnologia({image, title, description, rating}: Tecnolog
             </p>
 
             <span>{rating}{estrelas}</span>
+            
+            <ContadorPersonalizado storageKey={`likes-${index}`}/>
         </div>
     )
 }

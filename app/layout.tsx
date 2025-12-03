@@ -46,7 +46,7 @@ export default function RootLayout({
   mt-6 mb-4
   rounded-2xl
 
-  bg-gradient-to-r from-green-100 to-green-300
+  bg-gradient-to-r from-blue-100 to-blue-300
   text-black
   font-semibold italic
   text-sm

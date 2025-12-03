@@ -31,9 +31,6 @@ export default function Contador() {
     function resetCount() {
         setCounter(0);
     }
-    function alteraCorTexto(cor: String) {
-        
-    }
 
     return (
         <>
