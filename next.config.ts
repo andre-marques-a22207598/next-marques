@@ -1,10 +1,14 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   images: {
-      domains: ["deisishop.pythonanywhere.com"]
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "deisishop.pythonanywhere.com",
+      },
+    ],
   },
-  /* config options here */
-};
+}
 
-export default nextConfig;
+export default nextConfig
