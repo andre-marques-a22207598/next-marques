@@ -21,7 +21,7 @@ export default function RootLayout({
 
         <header className="flex flex-col items-center mt-2.5 mb-[30px]">
           <h1 className="mb-2.5 font-bold text-center text-[2em]">
-            A minha App React & Next.js!
+            DIW - Project 
           </h1>
           <nav>
             <ul className="nav-links flex gap-10">
@@ -32,6 +32,7 @@ export default function RootLayout({
               <li><Link href="/projetos">Projetos</Link></li>
               <li><Link href="/contador">Contador</Link></li>
               <li><Link href="/input">Input</Link></li>
+              <li><Link href="/produtos">DeisiShop</Link></li>
             </ul>
           </nav>
         </header>
