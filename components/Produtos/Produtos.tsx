@@ -43,7 +43,7 @@ export default function Produtos() {
                 <p>
                     Carregando...
                 </p>
-                <Spinner className='size-8'></Spinner>
+                {/*<Spinner className='size-8'></Spinner>*/}
             </>
         );
     if (!data) return <p>Dados inexistente</p>;
