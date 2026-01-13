@@ -3,8 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Produto } from '@/models/interfaces'
-//import './style.css'
-import { useEffect, useState } from 'react'
 
 interface CardProps {
     produto: Produto,
@@ -15,15 +13,17 @@ interface CardProps {
     onAlterarCarrinho: (produto: Produto[]) => void
 }
 
-
 export default function Card({produto, url_api, index, vaiAdicionar, carrinho, onAlterarCarrinho}: CardProps) {  
     function adicionar(produto: Produto) {
-        onAlterarCarrinho([... carrinho, produto])
+        const novoCarrinho = [...carrinho, produto]
+        onAlterarCarrinho(novoCarrinho)
+        localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
     }
 
     function remover(pIndex: number) {
         const novoCarrinho = carrinho.filter((_, i) => i !== pIndex)
         onAlterarCarrinho(novoCarrinho)
+        localStorage.setItem("carrinho", JSON.stringify(novoCarrinho))
     }
 
     return (
@@ -40,11 +40,17 @@ export default function Card({produto, url_api, index, vaiAdicionar, carrinho, o
                 </span>
             </Link>
 
-            <button onClick={() => adicionar(produto)} className={`cursor-pointer absolute z-[1] bottom-[10px] right-[10px] ${vaiAdicionar ? 'flex' : 'none'} justify-center items-center w-[20px] h-[20px] pb-[4px] rounded-full bg-green-500 hover:bg-green-600`}>
+            <button 
+                onClick={() => adicionar(produto)} 
+                className={`cursor-pointer absolute z-[1] bottom-[10px] right-[10px] ${vaiAdicionar ? 'flex' : 'hidden'} justify-center items-center w-[20px] h-[20px] pb-[4px] rounded-full bg-green-500 hover:bg-green-600`}
+            >
                 +
             </button>
 
-            <button onClick={() => remover(index)} className={`cursor-pointer absolute z-[1] bottom-[10px] right-[10px] ${vaiAdicionar ? 'hidden' : 'flex'} justify-center items-center w-[20px] h-[20px] pb-[4px] rounded-full bg-green-500 hover:bg-green-600`}>
+            <button 
+                onClick={() => remover(index)} 
+                className={`cursor-pointer absolute z-[1] bottom-[10px] right-[10px] ${vaiAdicionar ? 'hidden' : 'flex'} justify-center items-center w-[20px] h-[20px] pb-[4px] rounded-full bg-red-500 hover:bg-red-600`}
+            >
                 -
             </button>
         </div>
